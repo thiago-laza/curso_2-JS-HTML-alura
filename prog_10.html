@@ -1,0 +1,61 @@
+<canvas width='600' height='400'></canvas>
+
+<script>
+    var tela = document.querySelector('canvas');
+var pincel = tela.getContext('2d');
+
+pincel.fillStyle = 'gray';
+pincel.fillRect(0,0,600,400);
+
+pincel.beginPath();
+pincel.moveTo(300,0);
+pincel.lineTo(300,400);
+pincel.stroke();
+
+pincel.beginPath();
+pincel.moveTo(0,200);
+pincel.lineTo(600,200);
+pincel.stroke();
+
+function infoTela(evento){
+  var x = evento.pageX - tela.offsetLeft;
+  var y = evento.pageY - tela.offsetTop;
+  if (x>300 && y<200){
+    alert("Ponto no primeiro quadrante com coordenadas " + x + " e " + y);
+    console.log(x + " e " + y);
+    pincel.fillStyle = 'blue';
+    pincel.beginPath();
+    pincel.arc(x,y,5,0,2*3.14);
+    pincel.fill();
+    
+  }else if(x<300 && y<200){
+    alert("Ponto no segundo quadrante com coordenadas " + x + " e " + y);
+    console.log(x + " e " + y);
+    pincel.fillStyle = 'green';
+    pincel.beginPath();
+    pincel.arc(x,y,5,0,2*3.14);
+    pincel.fill();
+  }else if(x<300 && y>200){
+    alert("Ponto no terceiro quadrante com coordenadas " + x + " e " + y);
+    console.log(x + " e " + y);
+    pincel.fillStyle = 'yellow';
+    pincel.beginPath();
+    pincel.arc(x,y,5,0,2*3.14);
+    pincel.fill();
+  }else if(x>300 && y>200){
+    alert("Ponto no quarto quadrante com coordenadas " + x + " e " + y);
+    console.log(x + " e " + y);
+    pincel.fillStyle = 'red';
+    pincel.beginPath();
+    pincel.arc(x,y,5,0,2*3.14);
+    pincel.fill();
+  }else if(x==300){
+    alert("eixo Y");
+  }else if(y==200){
+    alert("eixo X");
+  }else if(x==300 && y==200){
+    alert("origem");
+  }
+}
+tela.onclick=infoTela;
+</script>
